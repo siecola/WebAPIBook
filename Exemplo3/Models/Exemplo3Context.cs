@@ -20,5 +20,7 @@ namespace Exemplo3.Models
         }
 
         public System.Data.Entity.DbSet<Exemplo3.Models.Product> Products { get; set; }
+
+        public System.Data.Entity.DbSet<Exemplo3.Models.Order> Orders { get; set; }
     }
 }

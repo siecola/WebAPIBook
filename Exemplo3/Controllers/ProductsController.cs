@@ -12,9 +12,25 @@ using Exemplo3.Models;
 
 namespace Exemplo3.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/products")]
     public class ProductsController : ApiController
     {
         private Exemplo3Context db = new Exemplo3Context();
+
+        [ResponseType(typeof(Product))]
+        [HttpGet]
+        [Route("byname")]
+        public IHttpActionResult GetProductByName(string name)
+        {
+            var product = db.Products.Where(p => p.nome == name);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
 
         // GET: api/Products
         public IQueryable<Product> GetProducts()
